@@ -7,10 +7,16 @@ export default function ProductCard({ product, onPurchase,onFavorite }) {
     specifications, 
     price, 
     stockCount, 
+    category,
     isFavorite } = product;
 
   return (
-    <div className={isFavorite ? "product-card favorite" : "product-card"}>
+    
+    <div
+        className={`product-card ${category.toLowerCase()} ${
+            isFavorite ? "favorite" : ""
+        }`}
+    >
         <img src={imageSrc} alt={title} />
         <h1>{id}</h1>
         <h3>{title}</h3>

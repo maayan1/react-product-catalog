@@ -8,88 +8,190 @@
 }
 
 body {
-  font-family: sans-serif;
-  background: #f5f5f5;
-  padding: 24px;
-  color: #222;
+  font-family: Inter, Arial, sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+  padding: 32px;
 }
 
 /* ============================================
    LAYOUT
    ============================================ */
 .app {
-  max-width: 960px;
+  max-width: 1180px;
   margin: 0 auto;
 }
 
 .product-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 22px;
 }
 
 /* ============================================
    TYPOGRAPHY
    ============================================ */
 h1 {
-  font-size: 28px;
-  margin-bottom: 24px;
+  font-size: 36px;
+  margin-bottom: 28px;
+  font-weight: 800;
 }
 
 h2 {
-  font-size: 20px;
-  margin: 32px 0 16px;
+  font-size: 24px;
+  margin: 36px 0 18px;
+  font-weight: 750;
+}
+
+/* ============================================
+   FILTER BAR
+   ============================================ */
+.filters,
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 12px 0 28px;
+}
+
+.filters button,
+.filter-bar button {
+  padding: 10px 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #374151;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.filters button:hover,
+.filter-bar button:hover {
+  transform: translateY(-1px);
+  background: #f9fafb;
+}
+
+.filters button.active,
+.filter-bar button.active {
+  background: #111827;
+  color: white;
+  border-color: #111827;
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.18);
+}
+
+/* Category active colors */
+.filters button.active:nth-child(2),
+.filter-bar button.active:nth-child(2) {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.filters button.active:nth-child(3),
+.filter-bar button.active:nth-child(3) {
+  background: #7c3aed;
+  border-color: #7c3aed;
+}
+
+.filters button.active:nth-child(4),
+.filter-bar button.active:nth-child(4) {
+  background: #059669;
+  border-color: #059669;
 }
 
 /* ============================================
    PRODUCT CARD
    ============================================ */
 .product-card {
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  padding: 16px;
-  width: 220px;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 18px;
+  min-height: 420px;
+  box-shadow: 0 10px 25px rgba(17, 24, 39, 0.06);
+  transition: 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(17, 24, 39, 0.12);
 }
 
 .product-card.favorite {
-  border-color: #f0c040;
-  background: #fffdf0;
+  border: 2px solid #d4af37;
+  background: linear-gradient(180deg, #fffdf4 0%, #ffffff 60%);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.28);
+}
+
+.product-card.favorite::before {
+  content: "Favorite";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #d4af37;
+  color: #3f2f00;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .product-card img {
   width: 100%;
-  border-radius: 6px;
-  margin-bottom: 12px;
+  height: 170px;
+  object-fit: contain;
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 16px;
 }
 
+.product-card h2,
 .product-card h3 {
-  font-size: 16px;
-  margin-bottom: 4px;
+  font-size: 19px;
+  margin-bottom: 8px;
+  font-weight: 800;
 }
 
-.product-card .price {
-  font-size: 18px;
-  font-weight: bold;
-  color: #1a73e8;
+.product-card .price,
+.price {
+  font-size: 20px;
+  font-weight: 800;
+  color: #2563eb;
   margin: 8px 0;
 }
 
-.product-card .stock {
-  font-size: 13px;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.product-card ul {
-  font-size: 13px;
-  color: #555;
-  padding-left: 16px;
+.product-card .stock,
+.stock {
+  font-size: 14px;
+  color: #6b7280;
   margin-bottom: 12px;
 }
 
-.product-card li {
-  margin-bottom: 3px;
+.product-card ul {
+  font-size: 14px;
+  color: #4b5563;
+  padding-left: 18px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* ============================================
+   CATEGORY CARD COLORS
+   Add className by category if you want:
+   product-card phone / audio / watch
+   ============================================ */
+.product-card.phone {
+  border-top: 5px solid #2563eb;
+}
+
+.product-card.audio {
+  border-top: 5px solid #7c3aed;
+}
+
+.product-card.watch {
+  border-top: 5px solid #059669;
 }
 
 /* ============================================
@@ -98,65 +200,59 @@ h2 {
 .card-actions {
   display: flex;
   gap: 10px;
-  margin-top: 12px;
-}
-.card-actions button:disabled {
-  background: #9ca3af;
-  cursor: not-allowed;
+  margin-top: 16px;
 }
 
-.favorite {
-  border: 2px solid gold;
-}
-.btn-purchase {
-  flex: 1;
-  padding: 8px;
-  background: #1a73e8;
-  color: white;
+.card-actions button {
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 13px;
+  font-weight: 800;
+  transition: 0.2s ease;
 }
 
-.btn-purchase:disabled {
-  background: #ccc;
+.btn-purchase,
+.card-actions button:first-child {
+  flex: 1;
+  padding: 10px 14px;
+  background: #2563eb;
+  color: white;
+}
+
+.btn-purchase:hover:not(:disabled),
+.card-actions button:first-child:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.btn-purchase:disabled,
+.card-actions button:disabled {
+  background: #d1d5db;
+  color: #6b7280;
   cursor: not-allowed;
 }
 
-.btn-favorite {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: white;
-  cursor: pointer;
-  font-size: 16px;
+.btn-favorite,
+.card-actions button:last-child {
+  width: 44px;
+  background: #fff7d6;
+  color: #8a6500;
+  border: 1px solid #f0d56b;
+  font-size: 18px;
 }
 
-.btn-favorite.active {
-  border-color: #f0c040;
-  background: #fffdf0;
+.btn-favorite.active,
+.card-actions button:last-child.active {
+  background: #d4af37;
+  color: #3f2f00;
 }
 
 /* ============================================
-   FILTER BAR
+   EMPTY STATE
    ============================================ */
-.filter-bar {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.filter-bar button {
-  padding: 6px 16px;
-  border: 1px solid #ccc;
-  border-radius: 99px;
-  background: white;
-  cursor: pointer;
-}
-
-.filter-bar button.active {
-  background: #1a73e8;
-  color: white;
-  border-color: #1a73e8;
+.app > p {
+  color: #6b7280;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px dashed #d1d5db;
 }
